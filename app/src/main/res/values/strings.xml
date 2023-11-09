@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Comptador</string>
     <string name="touchme">Prem-me</string>
+    <string name="timeText">Temps disponible: %1$d</string>
 </resources>
