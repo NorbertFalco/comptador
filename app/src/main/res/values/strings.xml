@@ -2,5 +2,7 @@
     <string name="app_name">Comptador</string>
     <string name="touchme">Prem-me</string>
     <string name="timeText">Temps disponible: %1$d</string>
-    <string name="endGame">Temps acabat</string>
+    <string name="endGame">Temps acabat! Resultat: %1$d</string>
+    <string name="aboutTitle">TimeFighter%1$s</string>
+    <string name="aboutMessage">"Creat per Norbert Falcó. Github: https://github.com/NorbertFalco/comptador "</string>
 </resources>

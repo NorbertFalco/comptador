@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_200"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/timeTextView"
+        android:id="@+id/timeLeftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -18,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/counterTextView"
+        android:id="@+id/gameScoreTextView"
         android:layout_width="82dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
