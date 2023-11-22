@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Comptador</string>
-    <string name="touchme">Prem-me</string>
-    <string name="timeText">Temps disponible: %1$d</string>
-    <string name="endGame">Temps acabat! Resultat: %1$d</string>
-    <string name="aboutTitle">TimeFighter%1$s</string>
-    <string name="aboutMessage">"Creat per Norbert Falcó. Github: https://github.com/NorbertFalco/comptador "</string>
+<string name="app_name">TFighter</string>
+<string name="yourScore">Your Score: %1$d</string>
+<string name="timeLeft">Time Left: %1$d</string>
+<string name="touchme">Tap Me!</string>
+<string name="gameOverMessage">Time\'s up! Your score was: %1$d</string>
+<string name="aboutMenu">About</string>
+<string name="aboutTitle">Time Fighter %1$s</string>
+<string name="aboutMessage">"Creat per Norbert Falcó. Github: https://github.com/NorbertFalco/comptador "</string>
 </resources>

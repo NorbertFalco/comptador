@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
+
 class MainActivity : AppCompatActivity() {
 
     private var score = 0
@@ -59,8 +60,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.menu.menu)
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu,menu)
         return true
     }
 
@@ -97,17 +98,17 @@ class MainActivity : AppCompatActivity() {
     private fun resetGame() {
         score = 0
 
-        gameScoreTextView.text = "Your Score: {score}"
+        gameScoreTextView.text = getString(R.string.yourScore, score)
 
         val initialTimeLeft = initialCountDown / 1000
-        timeLeftTextView.text = "Time Left: {initialTimeLeft}"
+        timeLeftTextView.text = getString(R.string.timeLeft, initialTimeLeft)
 
         countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftOnTimer = millisUntilFinished
 
-                val timeleft = millisUntilFinished / 1000
-                timeLeftTextView.text = "Time Left: {timeLeft}"
+                val timeLeft = millisUntilFinished / 1000
+                timeLeftTextView.text = getString(R.string.timeLeft, timeLeft)
             }
 
             override fun onFinish() {
@@ -116,21 +117,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         gameStarted = false
-
     }
 
-
     private fun restoreGame() {
-        gameScoreTextView.text = "Your Score: {score}"
+        gameScoreTextView.text = getString(R.string.yourScore, score)
         val restoredTime = timeLeftOnTimer / 1000
-        timeLeftTextView.text = "Time Left: {restoredTime}"
+        timeLeftTextView.text = getString(R.string.timeLeft, restoredTime)
 
         countDownTimer = object : CountDownTimer(timeLeftOnTimer, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftOnTimer = millisUntilFinished
 
-                val timeLeft = millisUntilFinished
-                timeLeftTextView.text = "Time Left: {timeLeft}"
+                val timeLeft = millisUntilFinished / 1000
+                timeLeftTextView.text = getString(R.string.timeLeft, timeLeft)
             }
 
             override fun onFinish() {
@@ -147,7 +146,6 @@ class MainActivity : AppCompatActivity() {
         gameStarted = true
     }
 
-
     private fun incrementScore() {
         if (!gameStarted) {
             startGame()
@@ -157,15 +155,14 @@ class MainActivity : AppCompatActivity() {
 
         score += 1
 
-        val newScore = "Your Score: {score}"
+        val newScore = getString(R.string.yourScore, score)
         gameScoreTextView.text = newScore
         gameScoreTextView.startAnimation(blinkAnimation)
-
 
     }
 
     private fun endGame() {
-        Toast.makeText(this, "Time's up! Your score was: {score}", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.gameOverMessage, score), Toast.LENGTH_LONG).show()
 
         resetGame()
     }
