@@ -3,14 +3,18 @@ package me.norbertfalco.dam.comptador
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 
 
 class MainActivity : AppCompatActivity() {
@@ -159,6 +163,54 @@ class MainActivity : AppCompatActivity() {
         gameScoreTextView.text = newScore
         gameScoreTextView.startAnimation(blinkAnimation)
 
+        showScoreIncrement()
+    }
+
+    private fun showScoreIncrement() {
+        val scoreIncrementText = TextView(this)
+        scoreIncrementText.text = "+1"
+        scoreIncrementText.setTextColor(getColor(R.color.orange_1))
+        scoreIncrementText.textSize = 28f
+
+        // Log to check if the scoreIncrementText is being created
+        Log.d("ScoreIncrement", "TextView created")
+
+        val layoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        // Set random position within the screen
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+        layoutParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+        layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+        layoutParams.marginStart = (Math.random() * 500).toInt()
+        layoutParams.topMargin = (Math.random() * 500).toInt()
+
+        scoreIncrementText.layoutParams = layoutParams
+
+        // Log to check visibility before animation
+        Log.d("ScoreIncrement", "Before animation - Visibility: ${scoreIncrementText.visibility}")
+
+        // Add the TextView to the container
+        val scoreIncrementContainer = findViewById<FrameLayout>(R.id.scoreIncrementContainer)
+        scoreIncrementContainer.addView(scoreIncrementText)
+
+        // Log to check visibility after adding to the container
+        Log.d("ScoreIncrement", "After adding to container - Visibility: ${scoreIncrementText.visibility}")
+
+        // Animate the TextView
+        val fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        scoreIncrementText.startAnimation(fadeInAnimation)
+
+        // Log to check visibility after animation
+        Log.d("ScoreIncrement", "After animation - Visibility: ${scoreIncrementText.visibility}")
+
+        // Remove the TextView after a delay
+        Handler(Looper.getMainLooper()).postDelayed({
+            scoreIncrementContainer.removeView(scoreIncrementText)
+        }, 1000) // Adjust the delay as needed
     }
 
     private fun endGame() {
